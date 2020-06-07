@@ -28,9 +28,9 @@ if (file_exists(dirname(__FILE__) . '/local.php')) {
 	define( 'DB_HOST', 'localhost' );
 } else {
 	//Live databse settings
-	define( 'DB_NAME', 'myfirstwebsite' );
-	define( 'DB_USER', 'root' );
-	define( 'DB_PASSWORD', '' );
+	define( 'DB_NAME', 'db6gfttcyb7ewy' );
+	define( 'DB_USER', 'uz55h2sxq89q8' );
+	define( 'DB_PASSWORD', '@m5l1IN253%k' );
 	define( 'DB_HOST', 'localhost' );
 }
 
