@@ -94,6 +94,22 @@ function university_post_types()
         ),
         'menu_icon' => 'dashicons-heart'
     ));
+
+    //Hero Slider Post Type
+    register_post_type('slider', array(
+        'supports' => array('title', 'editor', 'thumbnail'),
+        'rewrite' => array('slug' => 'slider'),
+        'has_archive' => true,
+        'public' => true,
+        'labels' => array(
+            'name' => 'Sliders',
+            'add_new_item' => 'Add New Sliders',
+            'edit_item' => 'Edit Slider',
+            'all_items' => 'All Sliders',
+            'singular_name' => 'Slider'
+        ),
+        'menu_icon' => 'dashicons-calendar'
+    ));
 }
 
 add_action('init', 'university_post_types');

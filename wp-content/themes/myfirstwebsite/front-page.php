@@ -25,7 +25,6 @@
           array(
             'key' => 'event_date',
             'compare' => '>=',
-            'value' => $today,
             'type' => 'numeric'
           )
         )
@@ -72,33 +71,28 @@
   </div>
 </div>
 
+
+<?php
+
+$homePageSlider = new WP_Query(array(
+  'posts_per_page' => 3,
+  'post_type' => 'slider'
+)); ?>
 <div class="hero-slider">
-  <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/bus.jpg') ?>);">
-    <div class="hero-slider__interior container">
+  <?php
+  while ($homePageSlider->have_posts()) {
+    $homePageSlider->the_post(); 
+    $backgroundImg = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');?>      
+  <div class="hero-slider__slide" style="background: url('<?php echo $backgroundImg[0]; ?>') no-repeat center center / cover;">
+  <div class="hero-slider__interior container">
       <div class="hero-slider__overlay">
-        <h2 class="headline headline--medium t-center">Free Transportation</h2>
-        <p class="t-center">All students have free unlimited bus fare.</p>
-        <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
+        <h2 class="headline headline--medium t-center"><?php the_title(); ?></h2>
+        <div class="t-center"><?php the_content(); ?></div>
+        <p class="t-center no-margin"><a href="<?php the_permalink(); ?>" class="btn btn--blue"><?php the_field('slider_button'); ?></a></p>
       </div>
     </div>
   </div>
-  <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/apples.jpg') ?>);">
-    <div class="hero-slider__interior container">
-      <div class="hero-slider__overlay">
-        <h2 class="headline headline--medium t-center">An Apple a Day</h2>
-        <p class="t-center">Our dentistry program recommends eating apples.</p>
-        <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="hero-slider__slide" style="background-image: url(<?php echo get_theme_file_uri('/images/bread.jpg') ?>);">
-    <div class="hero-slider__interior container">
-      <div class="hero-slider__overlay">
-        <h2 class="headline headline--medium t-center">Free Food</h2>
-        <p class="t-center">Fictional University offers lunch plans for those in need.</p>
-        <p class="t-center no-margin"><a href="#" class="btn btn--blue">Learn more</a></p>
-      </div>
-    </div>
-  </div>
+  
+  <?php } ?>
 </div>
 <?php get_footer(); ?>
